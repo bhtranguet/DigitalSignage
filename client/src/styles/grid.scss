@@ -1,0 +1,51 @@
+.grid {
+  * {
+    box-sizing: border-box;
+  }
+  overflow-y: overlay;
+  border: 1px solid #a7a7a7;
+  display: inline-block;
+  max-width: 100%;
+  .grid-header {
+    display: flex;
+    font-weight: bold;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    .header-item {
+      background-color: #ecf0f5;
+      white-space: nowrap;
+      padding: 8px 24px 8px 4px;
+      border-bottom: 1px solid #e3e3e3;
+    }
+  }
+  .grid-content {
+    width: fit-content;
+    .grid-row {
+      display: flex;
+      cursor: pointer;
+      &.selected {
+        background-color: rgb(178, 233, 237);
+        color: rgb(33, 33, 33) !important;
+      }
+      &.grid-row-group {
+        .grid-cell {
+          width: 100%;
+          font-weight: bold;
+        }
+      }
+      .grid-cell {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        padding: 8px 24px 8px 4px;
+        border-bottom: 1px solid #e3e3e3;
+        .text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
