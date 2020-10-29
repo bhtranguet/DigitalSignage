@@ -8,7 +8,7 @@ import RouteWithSubRoutes from './common/component/RouteWithSubRoutes';
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <Router>
           <div className='app-content'>
             {

@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var authenRouter = require('./router/AuthenRouter');
 var uploadController = require('./controllers/UploadController');
+var screenRouter = require('./router/ScreenRouter');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -24,8 +24,8 @@ app.use(function (req, res, next) {
 app.use('/upload', express.static('upload'));
 
 // add controller
-app.use('/api/authen', authenRouter);
 app.use('/api/upload', uploadController);
+app.use('/api/screen', screenRouter);
 
 // run server
 var server = app.listen('8000', function () {

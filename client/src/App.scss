@@ -3,94 +3,72 @@
   src: url(/Baloo-Regular.ttf);
 }
 
-.App {
-  .nav-link {
-    color: #007bff;
-  }
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-
-  .App-header {
-    background-color: #282828 !important;
-    color: white;
-    padding: 16px 32px;
+.app {
+  .management {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .left {
+    flex-direction: column;
+    height: 100vh;
+    .management-header {
       display: flex;
-      align-items: center;
-      font-family: Baloo;
-      .logo {
-        height: 40px;
-        margin-right: 32px;
-      }
-      .text {
-        font-size: 25px;
-      }
-      .menu {
-        a {
-          color: white;
-          padding-left: 24px;
-          font-size: 20px;
-          text-decoration: none;
-          font-family: Baloo;
-          cursor: pointer;
-          &:hover {
-            color: #95c8d0;
-          }
-          &.selected {
-            color: #17a2b8;
+      justify-content: space-between;
+      background-color: #222d32 !important;
+      color: white;
+      .left {
+        display: flex;
+        align-items: center;
+        .logo {
+          width: 200px;
+          height: auto;
+          img {
+            width: 100%;
           }
         }
+        .btn-collapse {
+          margin-left: 30px;
+        }
       }
+      .right {
+        display: flex;
+        align-items: center;
+        .user-info {
+          margin-right: 16px;
+        }
+        .btn-setting {
+          margin-right: 16px;
+        }
+      }
+      
     }
-    .right {
+    .management-body {
+      flex-grow: 1;
       display: flex;
-      align-items: center;
-      font-size: 13px;
-      .notification {
-        .notify-link {
-          color: white !important;
-        }
-        margin-right: 32px;
-        user-select: none;
-        cursor: pointer;
-        position: relative;
-        .notification-content {
-          position: absolute;
-          left: -100px;
-          top: 45px;
-          width: 300px;
-          border-radius: 3px;
-          border: 1px solid #858484;
-          z-index: 5;
-          background: black;
-          .notify-item {
-            padding: 8px 16px;
+      .left {
+        width: 230px;
+        background: #222d32;
+        height: 100%;
+        .menu {
+          color: #b8c7ce;
+          font-size: 16px;
+          padding-top: 8px;
+          .menu-item {
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            cursor: pointer;
             &:hover {
-              background: white;
-              color: black;
+              background: #1e282c;
+              color: #ffffff;
+            }
+            i {
+              margin-right: 8px;
             }
           }
         }
       }
-      .notification-icon {
-        display: inline-block;
-        width: 32px;
-        height: 32px;
-        background: url(/icons8-notification-32.png) no-repeat center;
-      }
-      .btn-logout {
-        margin-left: 16px;
-        &:hover {
-          color: #17a2b8;
-          cursor: pointer;
-        }
-      }
-      .user {
-        margin-right: 16px;
+      .right {
+        flex-grow: 1;
+        padding: 32px;
       }
     }
   }
@@ -109,10 +87,6 @@
       user-select: none;
       cursor: default;
     }
-
-    /*
- * Card component
- */
     .card {
       background-color: #f7f7f7;
       /* just in case there no content*/

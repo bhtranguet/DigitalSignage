@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/grid.scss';
+import '../../styles/grid.scss';
 import $ from 'jquery';
 class Grid extends React.Component {
   constructor(props) {
