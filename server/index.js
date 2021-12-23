@@ -1,8 +1,14 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var uploadController = require('./controllers/UploadController');
 var screenRouter = require('./router/ScreenRouter');
+var presentationRouter = require('./router/PresentationRouter');
+var authenRouter = require('./router/AuthenRouter');
+var canvasRouter = require('./router/CanvasRouter');
+var panelRouter = require('./router/PanelRouter');
+var frameRouter = require('./router/FrameRouter');
+var mediaRouter = require('./router/MediaRouter');
+var captionRouter = require('./router/CaptionRouter');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -21,11 +27,17 @@ app.use(function (req, res, next) {
 });
 
 // Server static file
-app.use('/upload', express.static('upload'));
+app.use('/uploads', express.static('uploads'));
 
 // add controller
-app.use('/api/upload', uploadController);
 app.use('/api/screen', screenRouter);
+app.use('/api/canvas', canvasRouter);
+app.use('/api/panel', panelRouter);
+app.use('/api/frame', frameRouter);
+app.use('/api/media', mediaRouter);
+app.use('/api/caption', captionRouter);
+app.use('/api/presentation', presentationRouter);
+app.use('/api/authen', authenRouter);
 
 // run server
 var server = app.listen('8000', function () {

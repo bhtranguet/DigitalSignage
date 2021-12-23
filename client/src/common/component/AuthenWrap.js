@@ -1,29 +1,29 @@
 import React from 'react';
-import BaseService from '../../base_service'
-import { afterVerify } from '../common/events';
-class AuthenWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.service = new BaseService();
+import Module from '../enumeration/Module';
+import Utility from '../ultis/Ultility';
+import BaseComponent from './BaseComponent';
+class AuthenWrapper extends BaseComponent {
+  constructor() {
+    super(Module.Authen);
   }
-
   async componentDidMount() {
-    // Check authen
     var token = localStorage.getItem('token');
-    if (!token) {
-      window.location.assign("/login");
+    if (Utility.isNullOrEmpty(token)) {
+      if (this.props.location.pathname.includes('/presentation')) {
+        this.props.history.push('/presentation/login');
+      }
+      if (this.props.location.pathname.includes('/management')) {
+        this.props.history.push('/management/login');
+      }
     } else {
-      try {
-        var res = await (await this.service.get('authen/verify')).json();
-        if (res.success) {
-          localStorage.setItem('permissions', JSON.stringify(res.data.permissions));
-          localStorage.setItem('user_info', JSON.stringify(res.data.user));
-          afterVerify.trigger();
-        } else {
-          window.location.assign("/login");
+      var res = await (await this.service.presentationVerifyToken({token: token})).json();
+      if (res.success === false) {
+        if (this.props.location.pathname.includes('/presentation')) {
+          this.props.history.push('/presentation/login');
         }
-      } catch (error) {
-        window.location.assign("/login");
+        if (this.props.location.pathname.includes('/management')) {
+          this.props.history.push('/management/login');
+        }
       }
     }
   }

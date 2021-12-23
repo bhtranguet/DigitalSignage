@@ -1,0 +1,22 @@
+.canvas-detail-main {
+  display: flex;
+  justify-content: space-between;
+  .detail-form {
+    width: 48%;
+  }
+  .canvas-live-view {
+    width: 40%;
+    .canvas-box {
+      position: relative;
+      width: 100%;
+      border: 1px solid;
+      .panel-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+      }
+    }
+  }
+}

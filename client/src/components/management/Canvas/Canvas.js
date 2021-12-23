@@ -1,11 +1,18 @@
 import React from "react";
+import RouteWithSubRoutes from "../../../common/component/RouteWithSubRoutes";
 
-class Cavas extends React.Component {
+class Canvas extends React.Component {
   render() {
     return (
-      <div>Cavans</div>
+      <div>
+        {
+          this.props.children.map(route => {
+            return <RouteWithSubRoutes key={route.path} route={route}></RouteWithSubRoutes>
+          })
+        }
+      </div>
     )
   }
 }
 
-export default Cavas;
+export default Canvas;

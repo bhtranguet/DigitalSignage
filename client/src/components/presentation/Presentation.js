@@ -1,9 +1,16 @@
 import React from "react";
+import RouteWithSubRoutes from "../../common/component/RouteWithSubRoutes";
 
 class Presentation extends React.Component {
-  render () {
+  render() {
     return (
-      <h1>Digital Signage</h1>
+      <div>
+        {
+          this.props.children.map(route => {
+            return <RouteWithSubRoutes key={route.path} route={route}></RouteWithSubRoutes>
+          })
+        }
+      </div>
     )
   }
 }

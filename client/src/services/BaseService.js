@@ -1,5 +1,9 @@
-var webconfig = require('../webconfig');
+import webconfig from "../webconfig";
+
 class BaseService {
+  constructor(module) {
+    this.module = module;
+  }
   // phuong thức get
   get(url) {
     var fullPath = `${webconfig.serverApi}/${url}`;
@@ -60,10 +64,55 @@ class BaseService {
     return response; // parses JSON response into native JavaScript objects
   }
 
+  /**
+   * Get tất cả bản ghi
+   * Created by: bhtrang
+   * 04/11/2020
+  */
+  getListEntity() {
+    return this.get(this.module.moduleCode);
+  }
+
+  /**
+   * Thêm mới một entity
+   * Created by: bhtrang
+   * 01/11/2020
+  */
+  insertEntity(entity) {
+    return this.post(this.module.moduleCode, entity);
+  }
+
+  /**
+   * Xóa một entity
+   * Created by: bhtrang
+   * 01/11/2020
+  */
+  deleteEntity(id) {
+    return this.delete(`${this.module.moduleCode}/${id}`);
+  }
+
+  /**
+   * Lấy entity theo id
+   * Created by: bhtrang
+   * 01/11/2020
+  */
+  getEntityByID(id) {
+    return this.get(`${this.module.moduleCode}/${id}`);
+  }
+
+  /**
+   * Update một entity
+   * Created by: bhtrang
+   * 02/11/2020
+  */
+  updateEntity(entity) {
+     return this.put(this.module.moduleCode, entity);
+  }
+
   // Push Notify tới các users
   pushNotify(notify, users) {
     return this.post('notification', {notify: notify, users: users});
   }
 }
 
-module.exports = BaseService;
+export default BaseService;

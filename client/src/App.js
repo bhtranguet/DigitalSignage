@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import routerConfig from './common/config/routerConfig'
+import routerConfig from './common/config/RouterConfig'
 import './App.scss';
+import './styles/Common.scss';
 import RouteWithSubRoutes from './common/component/RouteWithSubRoutes';
 
 

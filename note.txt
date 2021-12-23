@@ -1,0 +1,16 @@
+-- có thể gán state động như này
+this.setState({[fieldName]: fieldValue});
+
+-- Cách tạo một class động từ string
+this.service = new (module.service)();
+
+-- cách truyền props cho children
+<AuthenWrapper {...this.props}>
+
+// Note của thầy phương
+custom hình ảnh canvas
+caption quảng cáo
+bảo mật
+lưu trữ local cache
+random vị trí các panel
+promotion, bảng giá

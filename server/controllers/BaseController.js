@@ -1,4 +1,5 @@
 const BaseBussiness = require("../bussiness/BaseBussiness");
+const ResponseData = require("../entity/ResponseData");
 
 class BaseController {
   constructor() {
@@ -12,7 +13,13 @@ class BaseController {
   async getByID(req, res) {
     var params = req.params;
     var id = params['id'];
-    var resData = await this.bussiness.getByID(id);
+    var resData = new ResponseData();
+    try {
+      resData.data = await this.bussiness.getByID(id);
+    } catch (error) {
+      resData.data = error.message;
+      resData.success = false;
+    }
     res.json(resData);
   }
   /**
@@ -21,7 +28,13 @@ class BaseController {
    * 19/09/2020
   */
   async getList(req, res) {
-    var resData = await this.bussiness.getList();
+    var resData = new ResponseData();
+    try {
+      resData.data = await this.bussiness.getList();
+    } catch (error) {
+      resData.data = error.message;
+      resData.success = false;
+    }
     res.json(resData);
   }
   /**
@@ -30,8 +43,14 @@ class BaseController {
    * 19/09/2020
   */
   async update(req, res) {
+    var resData = new ResponseData();
     var entity = req.body;
-    var resData = await this.bussiness.update(entity)
+    try {
+      resData.data = await this.bussiness.update(entity);
+    } catch (error) {
+      resData.data = error.message;
+      resData.success = false;
+    }
     res.json(resData);
   }
   /**
@@ -40,8 +59,14 @@ class BaseController {
    * 19/09/2020
   */
   async insert(req, res) {
+    var resData = new ResponseData();
     var entity = req.body;
-    var resData = await this.bussiness.insert(entity)
+    try {
+      resData.data = await this.bussiness.insert(entity)
+    } catch (error) {
+      resData.data = error.message;
+      resData.success = false;
+    }
     res.json(resData);
   }
   /**
@@ -50,8 +75,14 @@ class BaseController {
    * 19/09/2020
   */
   async delete(req, res) {
+    var resData = new ResponseData();
     var id = req.params['id'];
-    var resData = await this.bussiness.delete(id);
+    try {
+      resData.data = await this.bussiness.delete(id);
+    } catch (error) {
+      resData.data = error.message;
+      resData.success = false;
+    }
     res.json(resData);
   }
 }

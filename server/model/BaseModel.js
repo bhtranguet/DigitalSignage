@@ -32,7 +32,7 @@ class BaseModel {
    * Created by: bhtrang
    * 19/09/2020
   */
-  async query(queryString, params, connection = null) {
+  async query(queryString, params = null, connection = null) {
     var conn = connection ?? await this.getConnection();
     return new Promise((resolve, reject) => {
       conn.query(queryString, params, function (err, rows, fields) {
@@ -142,7 +142,7 @@ class BaseModel {
     tableName = tableName ?? this.tableName;
     let keys = Object.keys(object);
     let values = keys.map(key => object[key]);
-    let sql = 'INSERT INTO ' + tableName + ' (' + keys.join(',') + ') VALUES ?';
+    let sql = 'INSERT INTO ' + tableName + ' (' + keys.map(key => `\`${key}\``).join(',') + ') VALUES ?';
     return this.execute(sql, [[values]], connection);
   }
 
@@ -159,7 +159,7 @@ class BaseModel {
     }
     let params = columns.map(column => object[column]);
     params.push(object.id);
-    let sql = `UPDATE ${this.tableName} SET ${columns.map(column => `${column} = ?`).join(',')} WHERE id = ?`;
+    let sql = `UPDATE ${this.tableName} SET ${columns.map(column => `\`${column}\` = ?`).join(',')} WHERE id = ?`;
     return this.execute(sql, params, connection);
   }
 

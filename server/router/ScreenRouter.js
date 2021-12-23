@@ -2,7 +2,6 @@ var router = require('express').Router();
 var ScreenController = require('../controllers/ScreenController');
 var controller = new ScreenController();
 
-
 /**
  * Thêm Store
  * Created by: bhtrang

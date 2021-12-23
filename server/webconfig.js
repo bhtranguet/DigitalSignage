@@ -4,8 +4,8 @@ let webconfig = {
   dbPoolConfig: {
     connectionLimit: 20,
     host: 'localhost',
-    user: 'bhtrang',
-    password: '13111997',
+    user: 'root',
+    password: '',
     database: 'digital_signage'
   }
 }

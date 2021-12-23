@@ -1,0 +1,34 @@
+.dialog-wap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  &.open {
+    display: flex;
+  }
+  background: rgba(84, 84, 84, 0.7);
+  .dialog {
+    border: 1px solid #e0e0e0;
+    background: #ffffff;
+    padding: 16px;
+    .dialog-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      .close {
+        cursor: pointer;
+      }
+    }
+    .dialog-body {
+      padding: 16px 0;
+    }
+    button {
+      margin-right: 8px;
+    }
+  }
+}

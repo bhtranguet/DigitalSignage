@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/grid.scss';
+import '../../styles/Grid.scss';
 import $ from 'jquery';
 class Grid extends React.Component {
   constructor(props) {
@@ -9,15 +9,21 @@ class Grid extends React.Component {
       data: [],
       url: '',
       groupBy: props.groupBy ? props.groupBy : '',
-      selected: -1
+      selectedID: -1
     }
   }
 
+  /**
+   * Các sự kiện xảy ra trên grid
+   * Created by: bhtrang
+   * 01/11/2020
+  */
   executeEvent(event) {
     var target = $(event.currentTarget);
     // Xử lý xự kiện tương tác vs grid row
     if (target.hasClass('grid-row')) {
       switch (event.type) {
+        // Sự kiện click vào row
         case 'click':
           // lấy id entity và đổi lại trạng thái
           this.state.data.forEach(entity => {
@@ -26,7 +32,7 @@ class Grid extends React.Component {
           var entityID = parseInt(target.attr('id'));
           var entity = this.state.data.find(entity => entity.id === entityID);
           entity['isSelected'] = true;
-          this.setState({ data: this.state.data, selected: entity.id })
+          this.setState({ data: this.state.data, selectedID: entity.id })
 
           // gọi function executeCustomEvent ở lớp cha
           if (this.props.executeCustomEvent) {
@@ -84,7 +90,7 @@ class Grid extends React.Component {
           data.data[0]['isSelected'] = true;
         }
         this.setState({
-          data: data.data, selected: data.data.length > 0 ? data.data[0].id : -1
+          data: data.data, selectedID: data.data.length > 0 ? data.data[0].id : -1
         });
         if (this.props.afterLoad) {
           if (data.data.length > 0) {

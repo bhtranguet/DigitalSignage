@@ -1,7 +1,8 @@
 class ResponseData {
-  constructor(success = true, data = null) {
+  constructor(success = true, data = null, error = null) {
     this.success = success;
     this.data = data;
+    this.error = error;
   }
 }
 

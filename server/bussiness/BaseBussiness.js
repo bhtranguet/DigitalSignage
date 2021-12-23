@@ -1,4 +1,3 @@
-const ResponseData = require("../entity/ResponseData");
 const BaseModel = require("../model/BaseModel");
 
 class BaseBussiness {
@@ -10,76 +9,49 @@ class BaseBussiness {
    * Created by: bhtrang
    * 19/09/2020
   */
-  async getByID(id) {
-    var resData = new ResponseData();
-    try {
-      resData.data = await this.model.getByID(id);
-    } catch (error) {
-      resData.data = error.message;
-      resData.success = false;
-    }
-    return resData;
+  getByID(id) {
+    return this.model.getByID(id);
   }
   /**
    * Lấy về danh sách entity
    * Created by: bhtrang
    * 19/09/2020
   */
-  async getList() {
-    var resData = new ResponseData();
-    try {
-      resData.data = await this.model.getList();
-    } catch (error) {
-      resData.data = error.message;
-      resData.success = false;
-    }
-    return resData;
+  getList() {
+    return this.model.getList();
   }
   /**
    * Cập nhật entity
    * Created by: bhtrang
    * 19/09/2020
   */
-  async update(entity, columns = null) {
-    var resData = new ResponseData();
+  update(entity, columns = null) {
     columns = columns ?? Object.keys(entity).filter(key => key !== 'id');
-    try {
-      resData.data = await this.model.update(entity, columns);
-    } catch (error) {
-      resData.data = error.message;
-      resData.success = false;
-    }
-    return resData;
+    return this.model.update(entity, columns);
   }
   /**
    * Thêm mới entity
    * Created by: bhtrang
    * 19/09/2020
   */
-  async insert(entity) {
-    var resData = new ResponseData();
-    try {
-      resData.data = await this.model.insert(entity);
-    } catch (error) {
-      resData.data = error.message;
-      resData.success = false;
-    }
-    return resData;
+  insert(entity) {
+    return this.model.insert(entity);
+  }
+  /**
+   * Thêm mới multi entity
+   * Created by: bhtrang
+   * 19/09/2020
+  */
+  insertMulti(listEntity) {
+    return this.model.insertMulti(listEntity);
   }
   /**
    * Xóa một entity
    * Created by: bhtrang
    * 19/09/2020
   */
-  async delete(id) {
-    var resData = new ResponseData();
-    try {
-      resData.data = await this.model.delete(id);
-    } catch (error) {
-      resData.data = error.message;
-      resData.success = false;
-    }
-    return resData;
+  delete(id) {
+    return this.model.delete(id);
   }
 }
 
